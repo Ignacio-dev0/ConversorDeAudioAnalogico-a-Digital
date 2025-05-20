@@ -1,6 +1,4 @@
-# Una aplicación que permita cargar o grabar audio en formato analógico (o simulado) y
-convertirlo a distintas resoluciones digitales, mostrando cómo varían la calidad y el tamaño
-del archivo según la configuración de muestreo y cuantización.
+# Una aplicación que permita cargar o grabar audio en formato analógico (o simulado) y convertirlo a distintas resoluciones digitales, mostrando cómo varían la calidad y el tamaño del archivo según la configuración de muestreo y cuantización.
 # Funcionalidades:
 - Grabación de audio en tiempo real con un micrófono.
 - Conversión del audio a diferentes tasas de muestreo (ej: 8 kHz, 16 kHz, 44.1 kHz,
