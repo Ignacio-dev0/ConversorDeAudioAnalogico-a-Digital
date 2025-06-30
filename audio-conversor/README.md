@@ -1,5 +1,5 @@
 
-# ✅ README.md FINAL — Proyecto: Conversor de Audio Analógico a Digital
+# ✅ Proyecto: Conversor de Audio Analógico a Digital
 
 ### 🎧 Grabá, visualizá y entendé cómo funciona la digitalización del audio con React, Vite y Flask.
 
@@ -13,8 +13,6 @@ Esta aplicación permite:
 - 📊 Ver cómo cambia la forma de onda al digitalizarla.
 - 🎚 Modificar en tiempo real la frecuencia de muestreo y la cantidad de bits de cuantización.
 - 📂 Mantener una lista de grabaciones, elegir cuál visualizar y **ver cómo cambia la señal al ajustar los sliders sin volver a grabar**.
-
-Ideal para materias como **Comunicación de Datos**, **Sistemas Digitales**, **Procesamiento de Señales** o proyectos educativos de electrónica/ingeniería.
 
 ---
 
@@ -173,18 +171,3 @@ Algunas grabaciones pueden tardar más en procesarse dependiendo de la duración
 - El procesamiento es síncrono pero eficiente: no bloquea la interfaz.
 
 ---
-
-## 👥 Créditos
-
-- Interfaz React: Ariel
-- Lógica de procesamiento: combinación de clases, prueba/error y ayuda externa 💪
-- Documentación pensada para estudiantes ✍️
-
----
-
-## ❓ Dudas o mejoras
-
-¡Estás invitado a experimentar! Podés agregar:
-- Guardado de audios
-- Exportación de resultados
-- Carga desde archivos existentes
