@@ -4,6 +4,7 @@ from pydub import AudioSegment
 import numpy as np
 from scipy.signal import resample
 import io
+from flask import send_file
 
 app = Flask(__name__)
 CORS(app)
@@ -42,6 +43,29 @@ def procesar_audio():
         })
     except Exception as e:
         return jsonify({'error': f'Error al procesar el audio: {str(e)}'}), 500
+
+
+@app.route('/exportar-audio', methods=['POST'])
+def exportar_audio():
+    if 'audio' not in request.files:
+        return jsonify({'error': 'No se envió ningún archivo'}), 400
+
+    formato = request.form.get('formato', 'wav')  # 'wav' o 'mp3'
+    file = request.files['audio']
+
+    audio = AudioSegment.from_file(file)
+    export_buffer = io.BytesIO()
+
+    if formato == 'wav':
+        audio.export(export_buffer, format='wav')
+        export_buffer.seek(0)
+        return send_file(export_buffer, download_name='grabacion.wav', as_attachment=True)
+    elif formato == 'mp3':
+        audio.export(export_buffer, format='mp3')
+        export_buffer.seek(0)
+        return send_file(export_buffer, download_name='grabacion.mp3', as_attachment=True)
+    else:
+        return jsonify({'error': 'Formato no soportado'}), 400
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -8,9 +8,11 @@ function Recorder({ sampleRate, bitDepth }) {
   const mediaRecorderRef = useRef(null)
   const streamRef = useRef(null)
   const audioChunks = useRef([])
-  const canvasRef = useRef(null)
+  const canvasRef= useRef(null)
+  const canvasRef2 = useRef(null)
   const audioCounter = useRef(1)
-  const chartInstance = useRef(null)
+  const chartOriginal = useRef(null)
+  const chartProcesado = useRef(null)
 
   const startRecording = async () => {
     const stream = await navigator.mediaDevices.getUserMedia({ audio: true })
@@ -43,6 +45,27 @@ function Recorder({ sampleRate, bitDepth }) {
     }
   }
 
+  const exportarAudio = async (formato) => {
+  const audio = audioList[selectedIndex]
+  if (!audio || !audio.blob) return
+
+  const formData = new FormData()
+  formData.append('audio', audio.blob)
+  formData.append('formato', formato)
+
+  const response = await fetch('http://localhost:5000/exportar-audio', {
+    method: 'POST',
+    body: formData
+  })
+
+  const blob = await response.blob()
+  const url = URL.createObjectURL(blob)
+  const a = document.createElement('a')
+  a.href = url
+  a.download = `grabacion.${formato}`
+  a.click()
+}
+
   const procesarAudio = async (blob) => {
     try {
       const formData = new FormData()
@@ -73,24 +96,50 @@ function Recorder({ sampleRate, bitDepth }) {
     }
   }
 
-  const dibujarGrafico = ({ labels, processedSpectrum }) => {
+  const dibujarGrafico = ({ labels, originalSpectrum, processedSpectrum }) => {
     const ctx = canvasRef.current.getContext('2d')
+    const ctx2 = canvasRef2.current.getContext('2d')
 
-    if (chartInstance.current) {
-      chartInstance.current.destroy()
-    }
+    // if (chartInstance.current) {
+    //   chartInstance.current.destroy()
+    // }
+    // Destruir si ya existen
+    if (chartOriginal.current) chartOriginal.current.destroy()
+    if (chartProcesado.current) chartProcesado.current.destroy()
 
-    chartInstance.current = new Chart(ctx, {
+    chartOriginal.current = new Chart(ctx, {
       type: 'line',
       data: {
         labels,
         datasets: [
           {
             label: 'Original',
-            //data: originalSpectrum,
+            data: originalSpectrum,
             borderColor: 'blue',
             fill: false
+          }
+          
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+          x: {
+            title: { display: true, text: 'Frecuencia (Hz)' }
           },
+          y: {
+            title: { display: true, text: 'Amplitud' }
+          }
+        }
+      }
+    })
+    chartProcesado.current = new Chart(ctx2, {
+      type: 'line',
+      data: {
+        labels,
+        datasets: [
+          
           {
             label: 'Procesado',
             data: processedSpectrum,
@@ -157,7 +206,12 @@ function Recorder({ sampleRate, bitDepth }) {
           </div>
         ))}
       </div>
-
+      {selectedIndex !== null && (
+      <div className="button-group">
+        <button className="btn" onClick={() => exportarAudio('wav')}>⬇️ Descargar WAV</button>
+        <button className="btn" onClick={() => exportarAudio('mp3')}>⬇️ Descargar MP3</button>
+      </div>  
+      )}
       {selectedIndex !== null && (
         <h3 className="selected-title">Audio seleccionado: {audioList[selectedIndex].name}</h3>
       )}
@@ -165,6 +219,11 @@ function Recorder({ sampleRate, bitDepth }) {
       <div className="chart-wrapper">
         <div className="chart-container-fixed">
           <canvas ref={canvasRef} />
+          
+        </div>
+        <div className="chart-container-fixed">
+          
+          <canvas ref={canvasRef2} />
         </div>
       </div>
     </div>

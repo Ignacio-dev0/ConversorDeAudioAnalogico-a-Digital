@@ -62,9 +62,9 @@ function SampleSimulator({ samples, setSamples, quantization, setQuantization })
         Muestreo ({samples})
         <input
           type="range"
-          min="10"
+          min="8000"
           max="96100"
-          step="100"
+          step="8000"
           value={samples}
           onChange={e => setSamples(Number(e.target.value))}
         />
@@ -81,6 +81,8 @@ function SampleSimulator({ samples, setSamples, quantization, setQuantization })
         />
       </label>
       <canvas ref={canvasRef} width="800" height="300" style={{ marginTop: 20 }} />
+      <p>Muestreo: cantidad de puntos tomados por segundo.</p>
+      <p>Cuantización: resolución en niveles para representar la amplitud.</p>
     </div>
   )
 }
