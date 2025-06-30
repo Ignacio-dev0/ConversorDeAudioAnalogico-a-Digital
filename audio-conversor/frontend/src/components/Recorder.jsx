@@ -73,7 +73,7 @@ function Recorder({ sampleRate, bitDepth }) {
     }
   }
 
-  const dibujarGrafico = ({ labels, originalSpectrum, processedSpectrum }) => {
+  const dibujarGrafico = ({ labels, processedSpectrum }) => {
     const ctx = canvasRef.current.getContext('2d')
 
     if (chartInstance.current) {
@@ -87,7 +87,7 @@ function Recorder({ sampleRate, bitDepth }) {
         datasets: [
           {
             label: 'Original',
-            data: originalSpectrum,
+            //data: originalSpectrum,
             borderColor: 'blue',
             fill: false
           },

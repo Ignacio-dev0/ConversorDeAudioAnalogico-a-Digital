@@ -6,7 +6,4 @@
 - Cuantización con distintas profundidades de bits (8, 16, 24 bits).
 - Comparación de espectros de frecuencia antes y después de la conversión.
 - Exportación del audio digitalizado en formatos como WAV o MP3.
-# Tecnologías sugeridas:
-- Python con pydub y librosa (para procesamiento de audio).
-- Aplicación web con WebRTC + Web Audio API (para grabación y conversión en el
-navegador).
+

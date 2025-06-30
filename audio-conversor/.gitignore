@@ -1,0 +1,15 @@
+# Backend (Python)
+backend/venv/
+backend/__pycache__/
+backend/*.pyc
+
+# Frontend (Node/React)
+frontend/node_modules/
+frontend/dist/
+frontend/build/
+frontend/.env
+package-lock.json
+# Archivos comunes
+.DS_Store
+Thumbs.db
+*.log

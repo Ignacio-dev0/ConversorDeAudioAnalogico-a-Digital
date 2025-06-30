@@ -81,7 +81,8 @@ venv\Scripts\activate      # en Windows
 # source venv/bin/activate # en Linux/Mac
 
 # Instalar dependencias
-pip install flask flask-cors pydub numpy scipy
+pip install -r requirements.txt
+
 ```
 
 > ⚠️ Asegurate que `ffmpeg` esté en el PATH del sistema.
