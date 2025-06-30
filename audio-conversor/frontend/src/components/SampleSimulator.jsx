@@ -62,9 +62,9 @@ function SampleSimulator({ samples, setSamples, quantization, setQuantization })
         Muestreo ({samples})
         <input
           type="range"
-          min="100"
+          min="10"
           max="96100"
-          step="1000"
+          step="100"
           value={samples}
           onChange={e => setSamples(Number(e.target.value))}
         />
@@ -75,6 +75,7 @@ function SampleSimulator({ samples, setSamples, quantization, setQuantization })
           type="range"
           min="8"
           max="24"
+          step="8"
           value={quantization}
           onChange={e => setQuantization(Number(e.target.value))}
         />
