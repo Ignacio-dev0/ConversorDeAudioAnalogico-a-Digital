@@ -5,9 +5,6 @@ import numpy as np
 from scipy.signal import resample
 import io
 from flask import send_file
-from pydub.utils import which
-
-AudioSegment.converter = which("ffmpeg")
 
 app = Flask(__name__)
 CORS(app)
