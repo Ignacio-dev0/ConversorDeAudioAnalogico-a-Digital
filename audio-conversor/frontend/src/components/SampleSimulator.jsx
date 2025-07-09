@@ -62,7 +62,7 @@ function SampleSimulator({ samples, setSamples, quantization, setQuantization })
         Muestreo ({samples})
         <input
           type="range"
-          min="8000"
+          min="50"
           max="96100"
           step="8000"
           value={samples}
