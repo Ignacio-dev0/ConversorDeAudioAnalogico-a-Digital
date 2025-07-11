@@ -53,7 +53,7 @@ function Recorder({ sampleRate, bitDepth }) {
   formData.append('audio', audio.blob)
   formData.append('formato', formato)
 
-  const response = await fetch('http://localhost:5000/exportar-audio', {
+  const response = await fetch('https://conversordeaudioanalogico-a-digital.onrender.com/exportar-audio', {
     method: 'POST',
     body: formData
   })
