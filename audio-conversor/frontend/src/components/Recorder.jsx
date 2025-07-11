@@ -73,7 +73,7 @@ function Recorder({ sampleRate, bitDepth }) {
       formData.append('sample_rate', sampleRate)
       formData.append('bit_depth', bitDepth)
 
-      const res = await fetch('http://localhost:5000/procesar-audio', {
+      const res = await fetch('https://conversordeaudioanalogico-a-digital.onrender.com/procesar-audio', {
         method: 'POST',
         body: formData
       })
