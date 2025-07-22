@@ -7,3 +7,6 @@
 - Comparación de espectros de frecuencia antes y después de la conversión.
 - Exportación del audio digitalizado en formatos como WAV o MP3
 
+
+# Investigación
+https://spiral-workshop-bb0.notion.site/Investigaci-n-Para-Sistema-de-conversion-de-audio-An-logo-a-Digital-1fac81fd56dc809d81cac38a4dcd80b4?source=copy_link
